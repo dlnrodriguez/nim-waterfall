@@ -42,17 +42,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Heap.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Heap.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/edu/neumont/csc130/nim/objects/Heap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="180">
+              <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+              <folding>
+                <element signature="e#147#148#0" expanded="true" />
+                <element signature="e#186#187#0" expanded="true" />
+                <element signature="e#236#237#0" expanded="true" />
+                <element signature="e#264#265#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Block.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Block.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/edu/neumont/csc130/nim/objects/Block.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
@@ -93,6 +98,7 @@
         <option value="$PROJECT_DIR$/src/edu/neumont/csc130/nim/Nim.java" />
         <option value="$PROJECT_DIR$/src/edu/neumont/csc130/nim/game/GameLevel.java" />
         <option value="$PROJECT_DIR$/src/edu/neumont/csc130/nim/game/GamePlay.java" />
+        <option value="$PROJECT_DIR$/src/edu/neumont/csc130/nim/objects/Heap.java" />
       </list>
     </option>
   </component>
@@ -289,12 +295,12 @@
       <option name="presentableId" value="Default" />
       <updated>1507301440805</updated>
       <workItem from="1507301442479" duration="97000" />
-      <workItem from="1507301695223" duration="521000" />
+      <workItem from="1507301695223" duration="674000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="618000" />
+    <option name="totallyTimeSpent" value="771000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1051" height="1050" extended-state="0" />
@@ -374,19 +380,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/neumont/csc130/nim/objects/Heap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/neumont/csc130/nim/objects/Block.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/neumont/csc130/nim/objects/Heap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <folding>
+            <element signature="e#147#148#0" expanded="true" />
+            <element signature="e#186#187#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#264#265#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
