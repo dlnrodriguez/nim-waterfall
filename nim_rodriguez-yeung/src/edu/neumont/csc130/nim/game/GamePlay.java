@@ -35,16 +35,17 @@ public class GamePlay {
 
     private Heap chooseHeap() {
         System.out.printf("From which heap would you like to take a block or blocks?\n");
-        Heap decision;
-        int heapDecision;
+        Heap decision; // end result of player choosing a heap
+        int heapDecision; //
 
         for (; ; ) {
             // placeholder for user input
             String temp = new Scanner(System.in).next();
 
-            try {
+            if (!isIntValue(temp)) {
+                System.out.printf("Sorry, \"%s\" is not a valid input! Please enter a heap number!\n", temp);
+            } else {
                 heapDecision = Integer.parseInt(temp);
-
                 if (heapDecision > heaps.length) {
                     System.out.printf("Sorry, \"%d\", is not a valid heap number! Try again.\n", heapDecision);
                 } else {
@@ -55,17 +56,43 @@ public class GamePlay {
                     } else {
                         break;
                     }
-                }
-            } catch (NumberFormatException ignore) {
-                System.out.printf("Sorry, \"%s\" is not a valid input! Please enter a heap number!\n", temp);
-            }
-        }
+                } // heap is empty
+            } // is an int value
+        } // infinite loop
 
         return decision;
     }
 
-    private int chooseNumberOfBlocks() {
-        return -1;
+    private int chooseNumberOfBlocks(Heap heap) {
+        System.out.printf("How many blocks would you like to take from Heap %d?", heap.id);
+        int decision;
+
+        for (; ; ) {
+            String temp = new Scanner(System.in).next();
+
+            if (!isIntValue(temp)) {
+                System.out.printf("Sorry, \"%s\" is not a valid input! Please enter a number!\n", temp);
+            } else {
+                decision = Integer.parseInt(temp);
+                if (!heap.removeBlocks(decision)) {
+                    System.out.printf("Sorry, there aren't that many blocks on Heap %d. Try again.\n", heap.id);
+                } else {
+                    break;
+                }
+            } // is an int value
+        } // infinite loop
+
+        return decision;
+    }
+
+    private boolean isIntValue(String input) {
+        try {
+            //noinspection ResultOfMethodCallIgnored
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException ignore) {
+            return false;
+        }
     }
 
     private boolean isValidMove(Heap heap, int nofBlocks) {
@@ -76,21 +103,21 @@ public class GamePlay {
         switch (gameLevel) {
             case EASY:
                 heaps = new Heap[2];
-                heaps[0] = new Heap(2);
-                heaps[1] = new Heap(2);
+                heaps[0] = new Heap(2, 1);
+                heaps[1] = new Heap(2, 2);
                 break;
             case MEDIUM:
                 heaps = new Heap[3];
-                heaps[0] = new Heap(2);
-                heaps[1] = new Heap(5);
-                heaps[2] = new Heap(7);
+                heaps[0] = new Heap(2, 1);
+                heaps[1] = new Heap(5, 2);
+                heaps[2] = new Heap(7, 3);
                 break;
             case HARD:
                 heaps = new Heap[4];
-                heaps[0] = new Heap(2);
-                heaps[1] = new Heap(3);
-                heaps[2] = new Heap(8);
-                heaps[3] = new Heap(9);
+                heaps[0] = new Heap(2, 1);
+                heaps[1] = new Heap(3, 2);
+                heaps[2] = new Heap(8, 3);
+                heaps[3] = new Heap(9, 4);
                 break;
         }
     }

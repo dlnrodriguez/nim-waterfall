@@ -5,8 +5,10 @@ import java.util.List;
 
 public class Heap {
     private List<Block> blocks;
+    public final int id;
 
-    public Heap(int nofBlocks) {
+    public Heap(final int nofBlocks, int id) {
+        this.id = id;
         blocks = new ArrayList<>();
         for (int i = 0; i < nofBlocks; i++) blocks.add(new Block());
     }
