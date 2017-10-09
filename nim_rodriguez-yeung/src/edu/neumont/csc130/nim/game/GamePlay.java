@@ -30,9 +30,9 @@ public class GamePlay {
     // * * *
 
     private void playGame(Player player) {
-        System.out.printf("%d, ", player);
+        System.out.printf("%s, ", player);
         Heap chosen = chooseHeap();
-        System.out.printf("%d, ", player);
+        System.out.printf("%s, ", player);
         chooseNumberOfBlocks(chosen);
 
         if (chosen.isEmpty()) {
