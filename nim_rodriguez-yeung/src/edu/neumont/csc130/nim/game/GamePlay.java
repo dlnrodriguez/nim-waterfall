@@ -14,7 +14,7 @@ public class GamePlay {
         if (doesNeedInstructions) displayInstructions();
     }
 
-    GamePlay(int[] players) {
+    GamePlay(Player[] players) {
         for (; ; ) {
             playGame(players[0]);
             playGame(players[1]);
@@ -29,10 +29,22 @@ public class GamePlay {
     // private methods
     // * * *
 
-    private void playGame(int player) { }
+    private void playGame(Player player) {
+        System.out.printf("%d, ", player);
+        Heap chosen = chooseHeap();
+        System.out.printf("%d, ", player);
+        chooseNumberOfBlocks(chosen);
+
+        if (chosen.isEmpty()) {
+            nofEmptyHeaps++;
+            if (nofEmptyHeaps == heaps.length) {
+                // Game.endGame(player);
+            }
+        }
+    }
 
     private Heap chooseHeap() {
-        System.out.printf("From which heap would you like to take a block or blocks?\n");
+        System.out.printf("from which heap would you like to take a block or blocks?\n");
         Heap decision; // end result of player choosing a heap
 
         for (; ; ) {
@@ -62,7 +74,7 @@ public class GamePlay {
     }
 
     private int chooseNumberOfBlocks(Heap heap) {
-        System.out.printf("How many blocks would you like to take from Heap %d?\n", heap.id);
+        System.out.printf("how many blocks would you like to take from Heap %d?\n", heap.id);
         int decision;
 
         for (; ; ) {

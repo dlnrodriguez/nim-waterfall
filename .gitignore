@@ -133,3 +133,4 @@ hs_err_pid*
 *.iml
 *.idea
 nim_rodriguez-yeung/.idea/workspace.xml
+*.xml
