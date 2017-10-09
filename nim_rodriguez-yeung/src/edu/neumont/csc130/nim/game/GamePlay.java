@@ -14,14 +14,14 @@ public class GamePlay {
         if (doesNeedInstructions) displayInstructions();
     }
 
-    public GamePlay(Player[] players) {
+    GamePlay(Player[] players) {
         for (; ; ) {
             playGame(players[0]);
             playGame(players[1]);
         }
     }
 
-    public static void displayInstructions() {
+    static void displayInstructions() {
         System.out.format("> these are instructions\n");
     }
 
@@ -30,13 +30,22 @@ public class GamePlay {
     // * * *
 
     private void playGame(Player player) {
+        System.out.printf("%d, ", player);
+        Heap chosen = chooseHeap();
+        System.out.printf("%d, ", player);
+        chooseNumberOfBlocks(chosen);
 
+        if (chosen.isEmpty()) {
+            nofEmptyHeaps++;
+            if (nofEmptyHeaps == heaps.length) {
+                // Game.endGame(player);
+            }
+        }
     }
 
     private Heap chooseHeap() {
-        System.out.printf("From which heap would you like to take a block or blocks?\n");
+        System.out.printf("from which heap would you like to take a block or blocks?\n");
         Heap decision; // end result of player choosing a heap
-        int heapDecision; //
 
         for (; ; ) {
             // placeholder for user input
@@ -45,14 +54,15 @@ public class GamePlay {
             if (!isIntValue(temp)) {
                 System.out.printf("Sorry, \"%s\" is not a valid input! Please enter a heap number!\n", temp);
             } else {
-                heapDecision = Integer.parseInt(temp);
-                if (heapDecision > heaps.length) {
+                int heapDecision = Integer.parseInt(temp);
+
+                if (heapDecision > heaps.length || heapDecision < 0) {
                     System.out.printf("Sorry, \"%d\", is not a valid heap number! Try again.\n", heapDecision);
                 } else {
                     decision = heaps[heapDecision - 1];
 
                     if (decision.isEmpty()) {
-                        System.out.printf("Sorry, Heap %d doesn't have any blocks on it. Try again", heapDecision);
+                        System.out.printf("Sorry, Heap %d doesn't have any blocks on it. Try again\n", heapDecision);
                     } else {
                         break;
                     }
@@ -64,7 +74,7 @@ public class GamePlay {
     }
 
     private int chooseNumberOfBlocks(Heap heap) {
-        System.out.printf("How many blocks would you like to take from Heap %d?", heap.id);
+        System.out.printf("how many blocks would you like to take from Heap %d?\n", heap.id);
         int decision;
 
         for (; ; ) {
@@ -74,7 +84,7 @@ public class GamePlay {
                 System.out.printf("Sorry, \"%s\" is not a valid input! Please enter a number!\n", temp);
             } else {
                 decision = Integer.parseInt(temp);
-                if (!heap.removeBlocks(decision)) {
+                if (!isValidMove(heap, decision)) {
                     System.out.printf("Sorry, there aren't that many blocks on Heap %d. Try again.\n", heap.id);
                 } else {
                     break;
@@ -100,25 +110,15 @@ public class GamePlay {
     }
 
     private static void setupHeaps(GameLevel gameLevel) {
-        switch (gameLevel) {
-            case EASY:
-                heaps = new Heap[2];
-                heaps[0] = new Heap(2, 1);
-                heaps[1] = new Heap(2, 2);
-                break;
-            case MEDIUM:
-                heaps = new Heap[3];
-                heaps[0] = new Heap(2, 1);
-                heaps[1] = new Heap(5, 2);
-                heaps[2] = new Heap(7, 3);
-                break;
-            case HARD:
-                heaps = new Heap[4];
-                heaps[0] = new Heap(2, 1);
-                heaps[1] = new Heap(3, 2);
-                heaps[2] = new Heap(8, 3);
-                heaps[3] = new Heap(9, 4);
-                break;
+        heaps = new Heap[gameLevel.nofHeaps];
+
+        int heapNumber = 0;
+        for (int nofBlocks : gameLevel.nofBlocks) heaps[heapNumber] = new Heap(nofBlocks, ++heapNumber);
+    }
+
+    public static void test() {
+        for (Heap heap : heaps) {
+            System.out.println(heap);
         }
     }
 }
