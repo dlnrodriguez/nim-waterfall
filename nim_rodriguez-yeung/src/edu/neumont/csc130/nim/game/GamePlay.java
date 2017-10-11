@@ -4,25 +4,32 @@ import edu.neumont.csc130.nim.objects.Heap;
 
 import java.util.Scanner;
 
-public class GamePlay {
+class GamePlay {
     private static Heap[] heaps;
     private int nofEmptyHeaps;
+    private boolean hasGameEnded = false;
 
-    public static void init(GameLevel gameLevel, Boolean doesNeedInstructions) {
+    private Player computer = new Player("Computer");
+
+    static void init(GameLevel gameLevel) {
         setupHeaps(gameLevel);
-
-        if (doesNeedInstructions) displayInstructions();
     }
 
     GamePlay(Player[] players) {
-        for (; ; ) {
-            playGame(players[0]);
-            playGame(players[1]);
-        }
-    }
+        Player p1, p2;
 
-    static void displayInstructions() {
-        System.out.format("> these are instructions\n");
+        p1 = players[0];
+
+        if (players.length == 1) { // player vs computer
+            p2 = computer;
+        } else {
+            p2 = players[1];
+        }
+
+        for (; !hasGameEnded; ) {
+            playGame(p1);
+            playGame(p2);
+        }
     }
 
     // * * *
@@ -30,6 +37,9 @@ public class GamePlay {
     // * * *
 
     private void playGame(Player player) {
+        if (hasGameEnded) return;
+
+        printHeaps();
         System.out.printf("%s, ", player);
         Heap chosen = chooseHeap();
         System.out.printf("%s, ", player);
@@ -38,7 +48,7 @@ public class GamePlay {
         if (chosen.isEmpty()) {
             nofEmptyHeaps++;
             if (nofEmptyHeaps == heaps.length) {
-                // Game.endGame(player);
+                endGame(player);
             }
         }
     }
@@ -56,7 +66,7 @@ public class GamePlay {
             } else {
                 int heapDecision = Integer.parseInt(temp);
 
-                if (heapDecision > heaps.length || heapDecision < 0) {
+                if (heapDecision > heaps.length || heapDecision < 1) {
                     System.out.printf("Sorry, \"%d\", is not a valid heap number! Try again.\n", heapDecision);
                 } else {
                     decision = heaps[heapDecision - 1];
@@ -71,6 +81,10 @@ public class GamePlay {
         } // infinite loop
 
         return decision;
+    }
+
+    private void printHeaps() {
+        for (Heap heap : heaps) System.out.println(heap);
     }
 
     private int chooseNumberOfBlocks(Heap heap) {
@@ -116,9 +130,8 @@ public class GamePlay {
         for (int nofBlocks : gameLevel.nofBlocks) heaps[heapNumber] = new Heap(nofBlocks, ++heapNumber);
     }
 
-    public static void test() {
-        for (Heap heap : heaps) {
-            System.out.println(heap);
-        }
+    public void endGame(Player loser) {
+        hasGameEnded = true;
+        System.out.printf("%s lost this round!\n", loser);
     }
 }

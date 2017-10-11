@@ -27,7 +27,7 @@ public class Heap {
     public String toString() {
         return "Heap{" +
                 "id=" + id +
-                ", blocks=" + blocks.size() +
+                ", blocks=" + (isEmpty() ? "is empty" : blocks.size()) +
                 '}';
     }
 }
